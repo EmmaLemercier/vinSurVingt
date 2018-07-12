@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    <div class="tab-pane fade show active" id="bouteille" role="tabpanel" aria-labelledby="bouteille-tab">
+        <div class ="row">
+            <div class ="col-lg-4">
+               {{ form_row(form.appellationBouteille, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+               {{ form_row(form.teinte, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.millesime, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+        </div>
+        <div class ="row rechercherFormulaire">
+            {{ form_widget(form.submit, {"attr": {"class": "offset-lg-5 col-lg-2 btn-primary btn"} }) }}
+        </div>
+    </div>
+   {{ form_end(form) }}

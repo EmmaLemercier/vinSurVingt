@@ -8,3 +8,28 @@
     height: 30px;
     width: auto;
 }
+
+.nav-link.active, .nav.nav-tabs, .nav-tabs
+{
+    border-color: #71213C !important;
+}
+
+body, a
+{
+    color: #161C40;
+}
+
+.nav-item
+{    
+    padding-left : 0;
+}
+
+#myTabContent, .rechercherFormulaire
+{
+    padding: 5% !important;
+}
+
+.nav-link.active
+{
+    background-color: #DEA4A2 !important;
+}
