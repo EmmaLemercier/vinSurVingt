@@ -47,4 +47,18 @@ class MembreRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function getMembresByPseudoMembre($pseudoMembre)
+    {
+        dump($this->createQueryBuilder('membre')
+            ->andWhere('membre.pseudoMembre LIKE :pseudoMembre')
+            ->setParameter('pseudoMembre', '%'.$pseudoMembre.'%')
+            ->getQuery()); die('ok');
+        return $this->createQueryBuilder('membre')
+            ->andWhere('membre.pseudoMembre LIKE :pseudoMembre')
+            ->setParameter('pseudoMembre', '%'.$pseudoMembre.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

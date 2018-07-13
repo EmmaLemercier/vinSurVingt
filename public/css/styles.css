@@ -1,12 +1,18 @@
 #topBar
 {
-    margin: 2% 0 5% 0;
+    margin-top: 2%; 
+    margin-bottom: 2%;
 }
 
-.picto
+.box-picto-nav
 {
-    height: 30px;
-    width: auto;
+    padding: 0;
+    font-size: 2em;
+}
+
+#box-picto-logout
+{
+    text-align: right;
 }
 
 .nav-link.active, .nav.nav-tabs, .nav-tabs
@@ -17,10 +23,12 @@
 body, a
 {
     color: #161C40;
+    font-family: 'Economica', sans-serif;
 }
 
 .nav-item
 {    
+    font-size: 1.1em;
     padding-left : 0;
 }
 
@@ -29,7 +37,60 @@ body, a
     padding: 5% !important;
 }
 
-.nav-link.active
+.nav-link.active, .form-submit:hover
 {
-    background-color: #DEA4A2 !important;
+    background-color: #161C40 !important;
+    color : white !important;
+    font-size: 1.3em;
+}
+
+.card
+{
+    background: #161C40;
+    color: #FFF;
+    font-size: 1.1em;
+    text-align: center;
+    margin: 1.65%;
+    
+}
+
+.form-submit
+{
+    background: #161C40;
+    color: #FFF;
+    font-size: 1.1em;
+}
+
+.resultat-options
+{
+    padding-top: 5%;
+    margin-top: 5%;
+    margin-bottom: -5%;
+    border-top: 1px white solid;
+}
+
+.resultat-lien, .resultat-lien:hover
+{
+    color: white;       
+    background-color: transparent;
+}
+
+.resultat-lien:hover
+{
+    font-size: 1.3em;
+}
+
+.alert
+{
+    width: auto;
+}
+
+.modal-alert
+{
+    color: red;
+}
+
+.modal-body
+{
+    color: #161C40 !important;
 }

@@ -22,12 +22,12 @@ class BouteilleType extends AbstractType
         $builder
             ->add('appellationBouteille', TextType::class, array(
                 'label' => 'Appellation',
-                'label_attr' => array('col-lg-5'),
+                'label_attr' => array('class' => 'col-lg-5'),
                 'required' => FALSE
                 ))
             ->add('teinte', ChoiceType::class, array(
                 'label' => 'Teinte',                
-                'label_attr' => array('col-lg-5'),
+                'label_attr' => array('class' => 'col-lg-5'),
                 'placeholder' => '', 
                 'required' => FALSE,
                 'choices' => array(
@@ -38,7 +38,7 @@ class BouteilleType extends AbstractType
                 )))                
             ->add('millesime', ChoiceType::class, array(
                 'label' => 'Millesime',                
-                'label_attr' => array('col-lg-5'),
+                'label_attr' => array('class' => 'col-lg-5'),
                 'placeholder' => '', 
                 'required' => FALSE,
                 'choices' => $annees))

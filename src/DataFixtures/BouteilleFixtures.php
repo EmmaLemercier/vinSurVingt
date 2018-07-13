@@ -16,7 +16,7 @@ class BouteilleFixtures extends Fixture{
             $bouteille->setAppellationBouteille("bouteille".$i)
                     ->setCapaciteGardeBouteille(5)
                     ->setProvenance("France")
-                    ->setMillesime(new \DateTime('2018'-$i))
+                    ->setMillesime('2018'-$i)
                     ->setTeinte("Rouge")
                     ->setTeneurAlcool(13.5)
                     ->setTranquillite(true);

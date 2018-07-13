@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\BouteilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,7 +40,7 @@ class Bouteille
     private $region;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $millesime;
 
@@ -74,27 +75,27 @@ class Bouteille
     private $teneurAlcool;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BouteilleMets", mappedBy="bouteille", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="BouteilleMets", mappedBy="bouteille", orphanRemoval=true)
      */
     private $metsBouteille;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BouteilleVolume", mappedBy="bouteille", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="BouteilleVolume", mappedBy="bouteille", orphanRemoval=true)
      */
     private $volumesBouteille;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BouteilleCepage", mappedBy="bouteille", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="BouteilleCepage", mappedBy="bouteille", orphanRemoval=true)
      */
     private $cepagesBouteille;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PointDeVenteBouteille", mappedBy="bouteille", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="PointDeVenteBouteille", mappedBy="bouteille", orphanRemoval=true)
      */
     private $pointsDeVenteBouteille;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MembreBouteille", mappedBy="bouteille", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="MembreBouteille", mappedBy="bouteille", orphanRemoval=true)
      */
     private $membresBouteille;
 
@@ -165,7 +166,7 @@ class Bouteille
         return $this->millesime;
     }
 
-    public function setMillesime(\DateTimeInterface $millesime): self
+    public function setMillesime(int $millesime): self
     {
         $this->millesime = $millesime;
 

@@ -31,7 +31,7 @@ class Utilisateur
         return $this->id;
     }
 
-    public function getPseudoMembre(): string
+    public function getPseudoMembre()
     {
         return $this->pseudoMembre;
     }

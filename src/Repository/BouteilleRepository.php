@@ -66,10 +66,9 @@ class BouteilleRepository extends ServiceEntityRepository
             
         if(!NULL == $millesime)
         {
-            $query->andWhere('bouteille.millesime LIKE :millesime')
-                  ->setParameter('millesime' , "'%".$millesime."%'");
+            $query->andWhere('bouteille.millesime = :millesime')
+                  ->setParameter('millesime' , $millesime);
         }    
-        
         return $query->getQuery()->getResult();
     }
 }
