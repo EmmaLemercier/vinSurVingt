@@ -9,6 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class BouteilleController extends Controller
 {
@@ -17,7 +20,6 @@ class BouteilleController extends Controller
             $bouteille = new Bouteille();
             
             $form = $this->createForm(BouteilleType::class, $bouteille, array(
-                'action' => $this->generateUrl('rechercher_bouteilles'),
                 'method' =>'GET'))->handleRequest($request);
         
         return $this->render('bouteille/form.html.twig', array(
@@ -34,14 +36,22 @@ class BouteilleController extends Controller
        
         $bouteilles = $bouteillesRepo->getBouteillesForAdmin($data['appellationBouteille'], $data['teinte'], $data['millesime']);
       
-       /* var_dump($bouteilles);
-       $return= array("responseCode"=>200,'bouteilles'=> $bouteilles);
-       $return=json_encode($bouteilles);
-       
-        return new Response($return,200,array('Content-Type'=>'application/json'));*/
+       $encoder = array(new JsonEncoder());
+       $normalizer = array(new ObjectNormalizer());
 
-         return $this->render('bouteille/list.html.twig', array(
-        'bouteilles' => $bouteilles));      
+       $serializer = new Serializer($normalizer, $encoder);
+       
+       $jsonContent = $serializer->serialize($bouteilles, 'json');
+        
+       /*$return= array("responseCode"=>200,'bouteilles'=> $bouteilles);
+       $return= serialize($bouteilles);*/
+       
+        return new Response($jsonContent,200,array('Content-Type'=>'application/json'));
+        
+        
+
+        /* return $this->render('bouteille/list.html.twig', array(
+        'bouteilles' => $bouteilles));     */ 
     }
     
     public function supprimerBouteilleAction($idBouteille)
