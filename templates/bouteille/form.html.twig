@@ -1,16 +1,101 @@
 {{ form_start(form) }}
     <div class ="row">
-       <div class ="col-lg-4">
+       <div class ="col-lg-4" id="appellationBouteille">
           {{ form_row(form.appellationBouteille, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
-       <div class ="col-lg-4">
+       <div class ="col-lg-4" id="teinte">
           {{ form_row(form.teinte, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
-       <div class ="col-lg-4">
+       <div class ="col-lg-4" id="millesime">
            {{ form_row(form.millesime, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
-    </div>
-    <div class ="row rechercherFormulaire">
-       {{ form_widget(form.submit, {"attr": {"class": "offset-lg-5 col-lg-2 btn-primary btn form-submit"} }) }}
-    </div>
+        {% if bouteille.id is defined %}
+            <div class ="col-lg-4">
+                {{ form_row(form.capaciteGardeBouteille, { "attr": {"class": "offset-lg-1 col-lg-6", "style" : "visibility : visible"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.region, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.provenance, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.signeOfficielQualite, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.teneurSucre, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.tranquillite, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+            <div class ="col-lg-4">
+                {{ form_row(form.teneurAlcool, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
+            </div>
+        </div>
+        <div class ="row">
+            <button class="offset-lg-5 col-lg-1 "type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <div class="col-lg-2 ">
+                {{ form_widget(form.submitUpdate, {"attr": {"class": "btn-primary btn form-submit"} }) }}
+            </div>
+        </div>
+        {% endif %}
+    
+    {% if bouteille is not defined %}
+        </div>
+            <div class ="row rechercherFormulaire">
+                <div class="offset-lg-5 col-lg-2 " onclick="loadDoc();" id="boutonValiderFormulaire">{{ form_widget(form.submit, {"attr": {"class": "btn-primary btn form-submit"} }) }}</div>
+            </div>
+    {% endif %}
 {{ form_end(form) }}
+
+{% block response %}
+    <div class ="row">
+        <div class ="col-lg-12 resultatsRecherche">
+            {{ include('bouteille/list.html.twig', { bouteilles : 'bouteilles' } ) }}
+        </div>
+    </div>
+{% endblock response %}
+{% block javascripts %}
+    <script language="javascript" type="text/javascript">
+    // La fonction loadDoc est déclanchée par le submit
+   function loadDoc() {
+        // on crée un objet XMLHttpRequest, capable d'interroger le serveur
+        var xhttp = new XMLHttpRequest();
+        // on assigne une action au changement de l'attribut readyState du déclencheur (xhttp)
+        xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            // on affecte la réponse à la requête à l'élément du Dom portant l'id resultatsRecherche
+            document.getElementById("resultatsRecherche").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open('GET', '{{ path("rechercher_bouteilles") }}', true);
+    xhttp.send();
+    console.log(xhttp.responseText);
+    console.log("ok");
+   
+ /*    
+    $("#resultatsRecherche").hide();
+    $("#formRechercheBouteille").submit(function(){ 
+    $("#resultatsRecherche").show();
+    var info = [];
+    data["appellationBouteille"] = $("#appellationBouteille").val();
+    data["teinte"] = $("#teinte").val();
+    data["millesime"] = $("#millesime").val();
+  
+    $.ajax({
+        type: "POST",
+        url: "{{ path('rechercher_bouteilles') }}",
+        data: data,
+        cache: false,
+        success: function(data){
+           $('#resultats_recherche').html(data.bouteilles);
+           $(".loading").hide();
+        }
+    });    
+    return false;
+}); }*/
+
+    </script>
+
+
+{% endblock javascripts %}

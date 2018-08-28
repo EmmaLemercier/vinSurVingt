@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "main/index.html.twig" %}
 {% block content %}
     <div class ="row">
         {% for bouteille in bouteilles %}
@@ -13,7 +13,7 @@
                     </div>  
                     <div class="row resultat-options">
                         <div class="offset-lg-2 col-lg-1">
-                            <button type="button" class="btn resultat-lien" data-toggle="modal" data-target="#modalSupprimer">
+                            <button type="button" class="btn resultat-lien" data-toggle="modal" data-target="#modalModifier">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </div>
@@ -22,9 +22,35 @@
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
+                        
+                         <!-- dataModal -->
+
+                     
+                         <!-- Modal modifier -->
+                         
+                        <div class="container-fluid">
+                            <div class="modal fade row" id="modalModifier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog col-lg-12" role="document">
+                                  <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title modal-alert" id="modalLabel"><i class="fas fa-edit"></i> Modifier la bouteille {{ bouteille.id }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="formModificationBouteille" action="{{ path('modifier_bouteille', {"idBouteille": bouteille.id}) }}" method="post">
+                                            {{ render(controller("App\\Controller\\BouteilleController::modifierBouteilleAction", { "idBouteille" : bouteille.id})) }}
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                 
                             
-                                
-                            <!-- Modal -->
+                        <!-- Modal Supprimer-->
                         <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
@@ -45,11 +71,14 @@
                                 </div>
                             </div>
                         </div>
+                             
                     </div>
                 </div>
             </div> 
         {% endfor %}
-    </div>         
+    </div>   
+    
+    
 
 {% endblock content %}
 

@@ -16,7 +16,7 @@
                </div>
            </div>
            <div class="row">
-               <ul class="nav nav-tabs col-lg-12">
+               <ul class="nav nav-tabs col-lg-12" id="myTab" role="tablist">
                    <li class="nav-item col-lg-3">                       
                         <a class="nav-link active" id="bouteille-tab" data-toggle="tab" href="#bouteille" role="tab" aria-controls="bouteille" aria-selected="true">Bouteille</a>
                    </li>
@@ -38,7 +38,11 @@
                                 </div>    
                             {% endfor %}
                         {% endblock flashBag %}
-                        {{ render(controller("App\\Controller\\BouteilleController::formulaireRechercherBouteillesAction")) }}
+                        <form id="formRechercheBouteille" action="{{ path('rechercher_bouteilles') }}" method="post">
+                            {{ render(controller("App\\Controller\\BouteilleController::formulaireRechercherBouteillesAction")) }}
+                        </form>
+                        {% block response %}
+                        {% endblock response %}
                     </div>
                     <div class="tab-pane fade" id="membre" role="tabpanel" aria-labelledby="membre-tab">
                         {{ render(controller("App\\Controller\\MembreController::formulaireRechercherMembresAction")) }}

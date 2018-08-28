@@ -137,7 +137,7 @@ class Bouteille
         return $this;
     }
 
-    public function getCapaciteGardeBouteille(): int
+    public function getCapaciteGardeBouteille()
     {
         return $this->capaciteGardeBouteille;
     }
@@ -149,7 +149,7 @@ class Bouteille
         return $this;
     }
 
-    public function getRegion(): string
+    public function getRegion()
     {
         return $this->region;
     }
@@ -173,7 +173,7 @@ class Bouteille
         return $this;
     }
 
-   public function getProvenance(): string
+   public function getProvenance()
     {
         return $this->provenance;
     }
@@ -185,7 +185,7 @@ class Bouteille
         return $this;
     }
 
-    public function getSigneOfficielQualite(): string
+    public function getSigneOfficielQualite()
     {
         return $this->signeOfficielQualite;
     }
@@ -209,7 +209,7 @@ class Bouteille
         return $this;
     }
 
-    public function getTeneurSucre(): string
+    public function getTeneurSucre()
     {
         return $this->teneurSucre;
     }
@@ -221,7 +221,7 @@ class Bouteille
         return $this;
     }
 
-    public function getTranquillite(): bool
+    public function getTranquillite()
     {
         return $this->tranquillite;
     }

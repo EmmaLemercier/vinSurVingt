@@ -1,15 +1,19 @@
 index:
     path: /
-    defaults: { _controller: 'App\Controller\GeneralController::indexAction' }
+    controller: App\Controller\GeneralController::indexAction
 
 rechercher_bouteilles:
     path: /bouteilles
-    defaults: { _controller: 'App\Controller\BouteilleController::rechercherBouteillesAction' }
+    controller: App\Controller\BouteilleController::rechercherBouteillesAction
     
 supprimer_bouteille:
-    path: /bouteille{idBouteille}/supprimer
-    defaults: { _controller: 'App\Controller\BouteilleController::supprimerBouteilleAction' }
+    path: /{idBouteille}/supprimer
+    controller: App\Controller\BouteilleController::supprimerBouteilleAction
+            
+modifier_bouteille:
+    path: /{idBouteille}/modifier
+    controller: App\Controller\BouteilleController::modifierBouteilleAction
     
 rechercher_membres:
     path: /membres
-    defaults: { _controller: 'App\Controller\MembreController::rechercherMembresAction' }
+    controller: App\Controller\MembreController::rechercherMembresAction

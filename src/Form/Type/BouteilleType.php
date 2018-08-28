@@ -5,9 +5,11 @@ namespace App\Form\Type;
 use App\Entity\Bouteille;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BouteilleType extends AbstractType
@@ -17,7 +19,14 @@ class BouteilleType extends AbstractType
         for($i=2018; $i>=1900; $i--)
             {
                 $annees[$i] = $i;
-                
+            }
+         for($i=50; $i>=0; $i--)
+            {
+                $capaciteGarde[$i] = $i;
+            }
+        for($i=18; $i>=8; $i--)
+            {
+                $teneurAlcool[$i] = $i;
             }
         $builder
             ->add('appellationBouteille', TextType::class, array(
@@ -41,10 +50,24 @@ class BouteilleType extends AbstractType
                 'label_attr' => array('class' => 'col-lg-5'),
                 'placeholder' => '', 
                 'required' => FALSE,
-                'choices' => $annees))
-                
-            ->add('submit', SubmitType::class, array('label' => 'Rechercher'))   
+                'choices' => $annees))   
+            ->add('submit', SubmitType::class, array('label' => 'Rechercher'))
         ;
+        
+        $builder->addEventListener(
+                FormEvents::PRE_SET_DATA, 
+                function(FormEvent $event) { 
+                $bouteille = $event->getData();
+
+        if (null == $bouteille) {
+          return; 
+        }
+         if (!null == $bouteille->getId()) {
+          $event->getForm()->remove('submit');
+        } 
+        }
+        );
+                
     }
 
     public function configureOptions(OptionsResolver $resolver)
