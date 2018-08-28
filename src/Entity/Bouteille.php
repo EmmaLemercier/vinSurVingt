@@ -65,12 +65,12 @@ class Bouteille
     private $teneurSucre;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $tranquillite;
 
     /**
-     * @ORM\Column(type="decimal", precision=3, scale=1)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $teneurAlcool;
 
