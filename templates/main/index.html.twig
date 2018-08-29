@@ -38,9 +38,7 @@
                                 </div>    
                             {% endfor %}
                         {% endblock flashBag %}
-                        <form id="formRechercheBouteille" action="{{ path('rechercher_bouteilles') }}" method="post">
                             {{ render(controller("App\\Controller\\BouteilleController::formulaireRechercherBouteillesAction")) }}
-                        </form>
                         {% block response %}
                         {% endblock response %}
                     </div>

@@ -1,34 +1,34 @@
 {{ form_start(form) }}
     <div class ="row">
-       <div class ="col-lg-4" id="appellationBouteille">
+       <div class ="col-lg-4 formField">
           {{ form_row(form.appellationBouteille, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
-       <div class ="col-lg-4" id="teinte">
+       <div class ="col-lg-4 formField" id="teinte">
           {{ form_row(form.teinte, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
-       <div class ="col-lg-4" id="millesime">
+       <div class ="col-lg-4 formField" id="millesime">
            {{ form_row(form.millesime, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
        </div>
         {% if bouteille.id is defined %}
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.capaciteGardeBouteille, { "attr": {"class": "offset-lg-1 col-lg-6", "style" : "visibility : visible"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.region, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.provenance, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.signeOfficielQualite, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.teneurSucre, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.tranquillite, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
-            <div class ="col-lg-4">
+            <div class ="col-lg-4 formField">
                 {{ form_row(form.teneurAlcool, { "attr": {"class": "offset-lg-1 col-lg-6"} })}}
             </div>
         </div>
@@ -43,8 +43,9 @@
     {% if bouteille is not defined %}
         </div>
             <div class ="row rechercherFormulaire">
-                <div class="offset-lg-5 col-lg-2 " onclick="loadDoc();" id="boutonValiderFormulaire">{{ form_widget(form.submit, {"attr": {"class": "btn-primary btn form-submit"} }) }}</div>
+                <div class="offset-lg-5 col-lg-2 " id="">{{ form_widget(form.submit, {"attr": {"class": "btn-primary btn form-submit"} }) }}</div>
             </div>
+        </div>
     {% endif %}
 {{ form_end(form) }}
 
@@ -58,7 +59,7 @@
 {% block javascripts %}
     <script language="javascript" type="text/javascript">
     // La fonction loadDoc est déclanchée par le submit
-   function loadDoc() {
+  /* function loadDoc() {
         // on crée un objet XMLHttpRequest, capable d'interroger le serveur
         var xhttp = new XMLHttpRequest();
         // on assigne une action au changement de l'attribut readyState du déclencheur (xhttp)
@@ -73,11 +74,12 @@
     console.log(xhttp.responseText);
     console.log("ok");
    
- /*    
+     
+        
+    console.log("ok");
     $("#resultatsRecherche").hide();
     $("#formRechercheBouteille").submit(function(){ 
     $("#resultatsRecherche").show();
-    var info = [];
     data["appellationBouteille"] = $("#appellationBouteille").val();
     data["teinte"] = $("#teinte").val();
     data["millesime"] = $("#millesime").val();
@@ -91,9 +93,10 @@
            $('#resultats_recherche').html(data.bouteilles);
            $(".loading").hide();
         }
-    });    
+    });  */  
+    console.log("ok");
     return false;
-}); }*/
+}); }
 
     </script>
 

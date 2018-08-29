@@ -95,9 +95,24 @@ body, a
     color: #161C40 !important;
 }
 
-#modalModifier .modal-dialog
+.modal-dialog-modifier
 {
     padding : 3% !important;
-    margin : 1% !important;
+    margin : 7% 1% 1% 1% !important;
     max-width : 100% !important;
+}
+
+.modal-backdrop
+{
+    opacity:0.1 !important;
+}
+
+.formField
+{
+    margin-top: 1%;
+}
+
+label
+{
+    font-weight: bold;
 }

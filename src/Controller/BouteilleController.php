@@ -20,8 +20,9 @@ class BouteilleController extends Controller
             $bouteille = new Bouteille();
             
             $form = $this->createForm(BouteilleType::class, $bouteille, array(
-                'method' =>'GET'))->handleRequest($request);
-        
+                'action' => $this->generateUrl('rechercher_bouteilles'),
+                'method' =>'POST'))->handleRequest($request);
+        dump($form);
         return $this->render('bouteille/form.html.twig', array(
             'form' => $form->createView()));
         
@@ -46,12 +47,12 @@ class BouteilleController extends Controller
        /*$return= array("responseCode"=>200,'bouteilles'=> $bouteilles);
        $return= serialize($bouteilles);*/
        
-        return new Response($jsonContent,200,array('Content-Type'=>'application/json'));
+         /* return new Response($jsonContent,200,array('Content-Type'=>'application/json'));*/
         
         
 
-        /* return $this->render('bouteille/list.html.twig', array(
-        'bouteilles' => $bouteilles));     */ 
+       return $this->render('bouteille/list.html.twig', array(
+        'bouteilles' => $bouteilles));      
     }
     
     public function supprimerBouteilleAction($idBouteille)
